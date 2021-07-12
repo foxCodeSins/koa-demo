@@ -14,11 +14,11 @@ const UserSchema = new mongoose.Schema({
         default: null,
     },
     sex: {
-        type: String,
+        type: Number,
         default: 0
     },
     age: {
-        type: String,
+        type: Number,
         default: 0
     },
 })

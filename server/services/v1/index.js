@@ -8,7 +8,7 @@ const v1 = new Router({
     prefix: '/v1'
 })
 
-v1.use(register.routes())
+v1.use(register.routes(), register.allowedMethods())
 v1.use(login.routes(), login.allowedMethods())
 v1.use(upload.routes(), upload.allowedMethods())
 v1.use(test.routes(), test.allowedMethods())

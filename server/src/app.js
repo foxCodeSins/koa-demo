@@ -62,9 +62,9 @@ const CONFIG = {
 app.use(session(CONFIG, app))
 
 app.use(async (ctx, next) => {
-  console.log('ctx ===========>', ctx)
-  console.log('ctx ===========>', ctx.session._sessCtx.valid(ctx.session))                    
-  if (!/login/.test(ctx.url)) {
+  // console.log('ctx ===========>', ctx)
+  // console.log('ctx ===========>', ctx.session._sessCtx.valid(ctx.session))     
+  if(!['/v1/login', '/v1/register'].includes(ctx.url)) {
     if (!ctx.session.username) {
       ctx.throw(JSON.stringify({
         code: 'C401',

@@ -1,9 +1,14 @@
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, Select } from 'antd'
 import React from 'react'
 
 interface RegisterProps {
     username: string,
     password: string,
+    rePassword: string,
+    name: string,
+    sex: number,
+    age: number | null,
+    isLoading: boolean,
     handleRegister?(values: any): void
 }
 
@@ -31,7 +36,19 @@ const Register:React.FC<RegisterProps> = (props: RegisterProps) => {
             }))]}>
                 <Input.Password />
             </Form.Item>
-            <Button htmlType="submit">注册</Button>
+            <Form.Item name="name" rules={[{ required: true, message: "请输入昵称" }]}>
+                <Input />
+            </Form.Item>
+            <Form.Item name="sex" rules={[{ required: true, message: "请选择性别" }]} >
+                <Select>
+                    <Select.Option value={0} >男</Select.Option>
+                    <Select.Option value={1} >女</Select.Option>
+                </Select>
+            </Form.Item>
+            <Form.Item name="age" rules={[{ required: true, message: "请输入年龄" }]}>
+                <Input type="number" />
+            </Form.Item>
+            <Button htmlType="submit" loading={props.isLoading}>注册</Button>
         </Form>
     )
 }
