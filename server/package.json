@@ -1,0 +1,27 @@
+{
+  "name": "test-koa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon --inspect src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gridfs-stream": "^1.1.1",
+    "koa": "^2.12.1",
+    "koa-body": "^4.2.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^9.0.1",
+    "koa-session": "^6.0.0",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.19",
+    "mongoose-gridfs": "^1.2.45"
+  },
+  "devDependencies": {
+    "koa2-swagger-ui": "^4.0.0",
+    "nodemon": "^2.0.4"
+  }
+}
