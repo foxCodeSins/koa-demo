@@ -15,7 +15,7 @@ interface RegisterProps {
 const Register:React.FC<RegisterProps> = (props: RegisterProps) => {
     return (
         <Form 
-            className="w-24"
+            className="w-1/2 p-5 border border-gray-300 rounded-lg "
             onFinish={props.handleRegister}
             initialValues={{...props}}
         >

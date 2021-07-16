@@ -15,13 +15,13 @@ router.post('/', async (ctx) => {
         console.log('login 2')
         if(res) {
             if(res.password === password) {
-                ctx.body = Response.success('登录成功')
+                ctx.body = Response.success({ msg: '登录成功' })
                 ctx.session.username = res.username
             }else {
-                ctx.body = Response.success('密码错误')
+                ctx.body = Response.success({ msg: '密码错误' })
             }
         } else {
-            ctx.body = Response.error('用户名不存在')
+            ctx.body = Response.error({ msg: '用户名不存在' })
         }
     } catch (error) {
         ctx.throw(401)

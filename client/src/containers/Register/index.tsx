@@ -2,6 +2,7 @@ import React,{ useCallback, useState} from 'react'
 import RegisterCom from '../../components/Register'
 import { useMutation, useQuery } from 'react-query'
 import { register } from '@/api/login'
+import { message } from 'antd'
 
 export default () => {
     const [username, setUsername] = useState("w1");
@@ -20,8 +21,13 @@ export default () => {
             console.log(err.message, vars, ctx)
             alert(err.message)
         },
-        onSuccess(data, vars, ctx) {
-            console.log(data, vars, ctx)
+        onSuccess(data: any, vars, ctx) {
+            console.log(data, vars, ctx, data.message)
+            if(data.code === "C200") {
+                message.success(data.message)
+            } else {
+                message.error(data.message)
+            }
         }
     })
     

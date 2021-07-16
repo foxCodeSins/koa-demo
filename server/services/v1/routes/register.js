@@ -1,5 +1,6 @@
 const KoaRouter = require('koa-router')
 const User = require('../model/user') 
+const { success, error } = require('../common/response')
 
 const router = new KoaRouter({
     prefix: '/register'
@@ -10,7 +11,7 @@ router.post('/', async (ctx) => {
     try {
         const res = await User.findOne({ username })
         if(res) {
-            ctx.body = '用户名已存在'
+            ctx.body = error({ msg: '用户名已存在' })
         } else {
             const user = new User({
                 username,
@@ -20,12 +21,13 @@ router.post('/', async (ctx) => {
                 sex
             })
             await user.save()
-            ctx.body = '注册成功'
+            ctx.body = success({ msg: '注册成功' })
         }
         ctx.status = 200
     } catch (error) {
         console.log('------> register',error)
-        ctx.throw(400, error.message)
+        // ctx.throw(400, error.message)
+        ctx.body = error()
     }
 })
 
