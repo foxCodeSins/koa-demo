@@ -1,6 +1,6 @@
 import React,{ useCallback, useState} from 'react'
 import RegisterCom from '../../components/Register'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation } from 'react-query'
 import { register } from '@/api/login'
 import { message } from 'antd'
 
@@ -18,11 +18,9 @@ export default () => {
 
     const mutation = useMutation(submit, {
         onError(err: Error, vars, ctx) {
-            console.log(err.message, vars, ctx)
             alert(err.message)
         },
         onSuccess(data: any, vars, ctx) {
-            console.log(data, vars, ctx, data.message)
             if(data.code === "C200") {
                 message.success(data.message)
             } else {
@@ -32,7 +30,6 @@ export default () => {
     })
     
     const handleRegister = useCallback(async (values: any) => {
-        console.log('register', values)
         setUsername(values.username)
         setPassword(values.password)
         setRePassword(values.rePassword)
@@ -40,13 +37,9 @@ export default () => {
         setSex(values.sex)
         setAge(values.age)
 
-        // const { data } = mutate({ username, password, name, sex, age })
         mutation.mutate({ username, password, name, sex, age })
     }, [])
 
-    // const res = useQuery("register", async () => {
-    //     return  await register()
-    // })
 
     return (
         <RegisterCom 

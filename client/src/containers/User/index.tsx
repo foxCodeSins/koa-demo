@@ -1,15 +1,17 @@
 import React from 'react'
-import axios from 'axios'
+import User from '../../components/User/index'
+import { useQuery } from 'react-query'
+import { listUser } from '@/api/user'
 
 export default () => {
 
-    axios.get('/v1/test/session').then(res => {
-        console.log(res)
-    }).catch(error => {
-        console.log(error, error.response)
+    const { data } = useQuery("user", async () => {
+        const { data } = await listUser()
+        return data
     })
 
+
     return (
-        <div>user</div>
+        <User data={data} total={10} page={1} />
     )
 }

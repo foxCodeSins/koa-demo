@@ -11,8 +11,9 @@ export default () => {
 
     const handleLogin = useCallback(async () => {
         try {
-            const res = await loginApi.login(username, password)
-            if(res.data.code === 'C200') {
+            const res: any = await loginApi.login(username, password)
+            console.log('res =============>', res)
+            if(res.code === 'C200') {
                 routerHistory.push('/user')
             }
         } catch (error) {
